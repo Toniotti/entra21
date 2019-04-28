@@ -20,7 +20,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -176,10 +175,9 @@ public class Main {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				boolean qtdV = false;
-				int quantidade=0;
 				//o try verifica se a quantidade informada é um número
 				try {
-					quantidade = Integer.parseInt(qtdTxt.getText());
+					int quantidade = Integer.parseInt(qtdTxt.getText());
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(null, "A quantidade deve ser um número.");
 					qtdV = true;
@@ -287,8 +285,76 @@ public class Main {
 				nomeTxt.requestFocus();
 				codigoTxt.setText("");
 				qtdTxt.setText("");
+				
+				if((codigoTxtA.getText()!= null) && (nomeTxtA.getText()!= null) && (qtdTxtA.getText()!= null)) {
+					int qtdR = 0;
+					for (int i = 0; i < 300; i++) {
+						if(codigoTxtA.getText().equals(bk[i][0])) {
+							qtdR = Integer.parseInt(bk[i][2])-1;
+							bk[i][2] = Integer.toString(qtdR);
+							break;
+						}
+					}
+					String tstr = "";
+					for (int i = 0; i < 300; i++) {
+						if(bk[i][0] != null) {
+						tstr += bk[i][0]+","+bk[i][1]+","+bk[i][2]+","+System.lineSeparator();
+						}
+					}
+					
+					//apaga todo o texto do arquivo txt
+					FileWriter writer;
+					try {
+						writer = new FileWriter("cadastro.txt", false);
+						PrintWriter printWriter = new PrintWriter(writer);
+					    printWriter.print("");
+					    printWriter.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					//insere o texto novo.
+					try {
+						writer = new FileWriter("cadastro.txt", true);
+						PrintWriter printWriter = new PrintWriter(writer);
+					    printWriter.print(tstr);
+					    printWriter.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					try {
+						FileReader reader = new FileReader("cadastro.txt");
+						BufferedReader bfr = new BufferedReader(reader);
+						String ln = "";
+						int i=0;
+						String str = "";
+						while((ln = bfr.readLine()) != null) {
+							
+							//insere o cadastro no vetor
+								String[] strSeparado = ln.split(",");
+								bk[i][0] = strSeparado[0];
+								bk[i][1] = strSeparado[1];
+								bk[i][2] = strSeparado[2];
+								str += "Codigo: "+bk[i][0]+" || Nome: "+bk[i][1]+" || Quantidade: "+bk[i][2]+System.lineSeparator();
+							i++;
+						}
+						exb.setText("");
+						exb.setText(str);
+						bfr.close();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				}
 			}
-		});
+		);
 		
 		JButton btnCadastrar = new JButton("Cadastrar.");
 		btnCadastrar.setBounds(10, 5, 110, 30);
