@@ -1,4 +1,4 @@
-package teste;
+package biblioteca;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class Principal {
+public class Main {
 	public static void main(String[] args) throws IOException {
 		//vetor
 		String[][] bk = new String[300][3]; 
