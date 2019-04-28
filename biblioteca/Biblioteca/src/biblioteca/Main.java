@@ -65,6 +65,18 @@ public class Main {
 		codigoTxt.setBounds(70, 30, 160, 20);
 		JTextField qtdTxt = new JTextField();
 		qtdTxt.setBounds(70, 80, 160, 20);
+		JTextField codigoEditar = new JTextField();
+		codigoEditar.setBounds(70, 30, 160, 20);
+		codigoEditar.setVisible(false);
+		
+		JTextField nomeEditar = new JTextField();
+		nomeEditar.setBounds(70, 55, 160, 20);
+		nomeEditar.setVisible(false);
+		
+		JTextField qtdEditar = new JTextField();
+		qtdEditar.setBounds(70, 80, 160, 20);
+		qtdEditar.setVisible(false);
+		
 		
 		//texflied para aluguel
 		JTextField nomeTxtA = new JTextField();
@@ -151,6 +163,7 @@ public class Main {
 		painel2.add(nomeTxt);
 		painel2.add(codigoTxt);
 		painel2.add(qtdTxt);
+		painel2.add(codigoEditar);
 		
 		painel2.add(nomeTxtA);
 		nomeTxtA.setVisible(false);
@@ -375,12 +388,23 @@ public class Main {
 		
 		painel2.add(inf);
 		
+		JButton edit = new JButton("Editar.");
+		edit.setBounds(80, 130, 120, 30);
+		edit.setVisible(false);
+		painel2.add(edit);
+		
+		
 		JButton btnCadastrar = new JButton("Cadastrar.");
 		btnCadastrar.setBounds(10, 5, 110, 30);
 		btnCadastrar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				qtdEditar.setVisible(false);
+				nomeEditar.setVisible(false);
+				codigoEditar.setVisible(false);
+				edit.setVisible(false);
+				codigoTxt.setEditable(false);
 				inf.setVisible(false);
 				codigoTxtA.setVisible(false);
 				nomeTxtA.setVisible(false);
@@ -390,7 +414,9 @@ public class Main {
 				
 				codigoTxt.setVisible(true);
 				nomeTxt.setVisible(true);
+				nomeTxt.setEditable(true);
 				qtdTxt.setVisible(true);
+				qtdTxt.setEditable(true);
 				
 				nomeTxt.requestFocus();
 				btnFnAlu.setVisible(false);
@@ -415,7 +441,10 @@ public class Main {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				qtdEditar.setVisible(false);
+				nomeEditar.setVisible(false);
+				codigoEditar.setVisible(false);
+				edit.setVisible(false);
 				codigoTxtA.setVisible(true);
 				nomeTxtA.setVisible(true);
 				nomeTxtA.setEditable(false);
@@ -441,6 +470,222 @@ public class Main {
 		
 		
 		
+		JButton btnEditar = new JButton("Editar.");
+		btnEditar.setBounds(240, 5, 110, 30);
+		btnEditar.setVisible(true);
+		
+		painel2.add(qtdEditar);
+		painel2.add(nomeEditar);
+		
+		btnEditar.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				edit.setVisible(true);
+				qtdEditar.setVisible(true);
+				nomeEditar.setVisible(true);
+				codigoEditar.setVisible(true);
+				codigoTxt.setVisible(false);
+				nomeTxt.setVisible(false);
+				qtdTxt.setVisible(false);
+				codigoTxtA.setVisible(false);
+				nomeTxtA.setVisible(false);
+				qtdTxtA.setVisible(false);
+				btnFnCad.setVisible(false);
+				btnFnAlu.setVisible(false);
+				inf.setVisible(true);
+				
+				codigoEditar.setEditable(true);
+				nomeEditar.setEditable(false);
+				qtdEditar.setEditable(false);
+				
+			}
+		});
+		
+		codigoEditar.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		codigoEditar.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(java.awt.event.KeyEvent evt) {
+				if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+					String cod = codigoEditar.getText();
+					boolean eq = false;
+						for(int t = 0; t < 300; t++) {//verifica se o codigo informado existe
+							if(cod.equals(bk[t][0])) {
+								nomeEditar.setEditable(true);
+								qtdEditar.setEditable(true);
+								eq = true;
+								break;
+							}
+						
+					}
+						if(eq == false) {//verifica se o codigo não foi encontrado, caso nao for encontrado exibira um erro
+							JOptionPane.showMessageDialog(null, "O codigo informado não existe.");
+						}		
+				}
+			}
+		});
+		
+		edit.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(!nomeEditar.equals(null)) {
+					String nm, qt, cod = null;
+					nm = nomeEditar.getText();
+					qt = qtdEditar.getText();
+					cod = codigoEditar.getText();
+					
+					for (int i = 0; i < 300; i++) {
+						if(cod.equals(bk[i][0])) {
+							bk[i][1] = nm;
+							bk[i][2] = qt;
+							break;
+						}
+					}
+					
+					String tstr = "";
+					for (int i = 0; i < 300; i++) {
+						if(bk[i][0] != null) {
+						tstr += bk[i][0]+","+bk[i][1]+","+bk[i][2]+","+System.lineSeparator();
+						}
+					}
+					
+					//apaga todo o texto do arquivo txt
+					FileWriter writer;
+					try {
+						writer = new FileWriter("cadastro.txt", false);
+						PrintWriter printWriter = new PrintWriter(writer);
+					    printWriter.print("");
+					    printWriter.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					//insere o texto novo.
+					try {
+						writer = new FileWriter("cadastro.txt", true);
+						PrintWriter printWriter = new PrintWriter(writer);
+					    printWriter.print(tstr);
+					    printWriter.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					try {
+						FileReader reader = new FileReader("cadastro.txt");
+						BufferedReader bfr = new BufferedReader(reader);
+						String ln = "";
+						int i=0;
+						String str = "";
+						while((ln = bfr.readLine()) != null) {
+							
+							//insere o cadastro no vetor
+								String[] strSeparado = ln.split(",");
+								bk[i][0] = strSeparado[0];
+								bk[i][1] = strSeparado[1];
+								bk[i][2] = strSeparado[2];
+								str += "Codigo: "+bk[i][0]+" || Nome: "+bk[i][1]+" || Quantidade: "+bk[i][2]+System.lineSeparator();
+							i++;
+						}
+						exb.setText("");
+						exb.setText(str);
+						bfr.close();
+					} catch (FileNotFoundException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				
+			}
+		});
+		
+		painel2.add(edit);
 		
 		//task bar
 		JPanel tskBar = new JPanel();
@@ -448,6 +693,7 @@ public class Main {
 		tskBar.setBackground(new Color(202, 204, 206)); //seta a cor da task bar
 		tskBar.add(btnCadastrar); // add o botao cadastrar a task bar
 		tskBar.add(btnAlugar); // add o botao alugar a task bar
+		tskBar.add(btnEditar);
 		tskBar.setLayout(null);
 		
 		//linha
@@ -459,6 +705,8 @@ public class Main {
 		JPanel linha2 = new JPanel();
 		linha2.setBounds(250, 48, 3, 600);
 		linha2.setBackground(Color.BLACK);
+		
+		
 		
 		
 		
