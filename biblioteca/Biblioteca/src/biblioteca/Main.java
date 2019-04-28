@@ -159,6 +159,7 @@ public class Main {
 		painel2.add(qtdTxtA);
 		qtdTxtA.setVisible(false);
 		
+		
 		//painel de exibição
 		JPanel exib = new JPanel();
 		exib.setBounds(253, 48, 550, 600);
@@ -367,7 +368,7 @@ public class Main {
 			}
 		);
 		
-		JLabel inf = new JLabel("! Aperter enter após digitar o codigo.");
+		JLabel inf = new JLabel("! Aperte enter após digitar o codigo.");
 		inf.setFont(inf.getFont().deriveFont(12f));
 		inf.setBounds(10, 105, 230, 20);
 		inf.setVisible(false);
@@ -437,6 +438,7 @@ public class Main {
 				qtdTxt.setText("");
 			}
 		});
+		
 		
 		
 		
