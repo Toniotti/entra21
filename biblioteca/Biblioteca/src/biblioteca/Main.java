@@ -1,13 +1,19 @@
 package biblioteca;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -15,6 +21,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -37,6 +44,9 @@ public class Main {
 		principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		principal.setLocationRelativeTo(null);
 		principal.setLayout(null);
+
+		principal.setIconImage(Toolkit.getDefaultToolkit().getImage("img/icon.png"));
+		
 		
 		//label
 		JLabel nome = new JLabel("Nome:");
@@ -479,6 +489,68 @@ public class Main {
 			}
 		}
 		
+		//painel de informação
+		JFrame informacao = new JFrame();
+		informacao.setSize(400, 500);
+		informacao.setTitle("Informações: Como utilizar o programa?");
+		informacao.setLocationRelativeTo(null);
+		informacao.setLayout(null);
+		informacao.setIconImage(Toolkit.getDefaultToolkit().getImage("img/info.jpg"));
+		
+		JTextArea infm = new JTextArea("    1 - Cadastrar\r\n" + 
+				"         *Clique em \"Nome\" e informe o nome do livro.\r\n" + 
+				"         *Clique em \"Qtd\" e informe a quantidade desse livro.\r\n" + 
+				"         *Clique em \"Cadastrar\".\r\n" + 
+				"\r\n" + 
+				"    2 - Alugar\r\n" + 
+				"         *Clique em \"Codigo\" e informe o codigo do livro.\r\n" + 
+				"         *Pressione \"Enter\".\r\n" + 
+				"         *O codigo de todos os livros pode ser visto a direita.\r\n" + 
+				"         *Clique em \"Alugar\".");
+		
+		infm.setEditable(false);
+		
+		infm.setBounds(10, 10, 365, 443);
+		informacao.add(infm);
+		
+		ImageIcon imgInf = new ImageIcon("img/info.jpg");
+		JButton info = new JButton(imgInf);
+		info.setBounds(745, 10, 30, 30);
+
+		tskBar.add(info);
+		
+		info.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				informacao.setVisible(true);
+				
+			}
+		});
 		
 		//show
 		principal.setVisible(true);
