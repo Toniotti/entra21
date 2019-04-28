@@ -44,6 +44,7 @@ public class Main {
 		principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		principal.setLocationRelativeTo(null);
 		principal.setLayout(null);
+		principal.setResizable(false);
 
 		principal.setIconImage(Toolkit.getDefaultToolkit().getImage("img/icon.png"));
 		
@@ -399,6 +400,11 @@ public class Main {
 				nomeTxt.requestFocus();
 				codigoTxt.setText("");
 				qtdTxt.setText("");
+				
+				//limpa os campos do aluguel
+				codigoTxtA.setText("");
+				nomeTxtA.setText("");
+				qtdTxtA.setText("");
 			}
 		});
 		
@@ -424,6 +430,11 @@ public class Main {
 				btnFnAlu.setVisible(true);
 				
 				inf.setVisible(true);
+				
+				//limpa os campos do cadastro
+				nomeTxt.setText("");
+				codigoTxt.setText("");
+				qtdTxt.setText("");
 			}
 		});
 		
@@ -492,6 +503,7 @@ public class Main {
 		//painel de informação
 		JFrame informacao = new JFrame();
 		informacao.setSize(400, 500);
+		informacao.setResizable(false);
 		informacao.setTitle("Informações: Como utilizar o programa?");
 		informacao.setLocationRelativeTo(null);
 		informacao.setLayout(null);
