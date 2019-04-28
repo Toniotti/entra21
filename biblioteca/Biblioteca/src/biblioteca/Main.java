@@ -432,6 +432,10 @@ public class Main {
 				codigoTxtA.setText("");
 				nomeTxtA.setText("");
 				qtdTxtA.setText("");
+				//limpa os campos do editar
+				nomeEditar.setText("");
+				codigoEditar.setText("");
+				qtdEditar.setText("");
 			}
 		});
 		
@@ -461,7 +465,11 @@ public class Main {
 				
 				inf.setVisible(true);
 				
-				//limpa os campos do cadastro
+				//limpa os campos
+				nomeEditar.setText("");
+				codigoEditar.setText("");
+				qtdEditar.setText("");
+				
 				nomeTxt.setText("");
 				codigoTxt.setText("");
 				qtdTxt.setText("");
@@ -525,27 +533,7 @@ public class Main {
 				
 			}
 		});
-		
-		codigoEditar.addKeyListener(new KeyListener() {
-			
-			@Override
-			public void keyTyped(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyReleased(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-			
-			@Override
-			public void keyPressed(KeyEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+
 		
 		codigoEditar.addKeyListener(new KeyListener() {
 			
@@ -569,7 +557,9 @@ public class Main {
 						for(int t = 0; t < 300; t++) {//verifica se o codigo informado existe
 							if(cod.equals(bk[t][0])) {
 								nomeEditar.setEditable(true);
+								nomeEditar.setText(bk[t][1]);
 								qtdEditar.setEditable(true);
+								qtdEditar.setText(bk[t][2]);
 								eq = true;
 								break;
 							}
@@ -768,7 +758,13 @@ public class Main {
 				"         *Clique em \"Codigo\" e informe o codigo do livro.\r\n" + 
 				"         *Pressione \"Enter\".\r\n" + 
 				"         *O codigo de todos os livros pode ser visto a direita.\r\n" + 
-				"         *Clique em \"Alugar\".");
+				"         *Clique em \"Alugar\".\n\n"
+				+ "    3 - Editar\r\n" + 
+				"         *Clique em codigo.\r\n" + 
+				"         *Digite o codigo do livro.\r\n" + 
+				"         *Edite o nome e/ou a quantidade.\r\n" + 
+				"         *Clique em editar."
+				);
 		
 		infm.setEditable(false);
 		
