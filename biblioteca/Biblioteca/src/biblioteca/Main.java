@@ -356,12 +356,20 @@ public class Main {
 			}
 		);
 		
+		JLabel inf = new JLabel("! Aperter enter após digitar o codigo.");
+		inf.setFont(inf.getFont().deriveFont(12f));
+		inf.setBounds(10, 105, 230, 20);
+		inf.setVisible(false);
+		
+		painel2.add(inf);
+		
 		JButton btnCadastrar = new JButton("Cadastrar.");
 		btnCadastrar.setBounds(10, 5, 110, 30);
 		btnCadastrar.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				inf.setVisible(false);
 				codigoTxtA.setVisible(false);
 				nomeTxtA.setVisible(false);
 				nomeTxtA.setEditable(false);
@@ -404,6 +412,8 @@ public class Main {
 				nomeTxt.requestFocus();
 				btnFnCad.setVisible(false);
 				btnFnAlu.setVisible(true);
+				
+				inf.setVisible(true);
 			}
 		});
 		
